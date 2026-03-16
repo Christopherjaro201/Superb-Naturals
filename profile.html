@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Profile - Superb Naturals</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <nav class="navbar">
+        <div class="nav-left">
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <img src="images/logo.jpg" class="logo-brand">
+            <a href="index.html" class="brand">Superb Naturals</a>
+        </div>
+
+        <div class="nav-menu" id="nav-menu">
+            <a href="index.html">Home</a>
+            <a href="reviews.html">Reviews</a>
+            <a href="contact.html">Support</a>
+            <a href="cart.html">Cart</a>
+            <a href="profile.html" class="active">Profile</a>
+        </div>
+
+        <div class="nav-right">
+            <a href="cart.html" class="cart-link">
+                🛒 <span id="cart-count">0</span>
+            </a>
+            <div class="avatar-container" id="avatar-container">
+                <img src="" id="avatar-img" class="avatar-img" alt="Avatar" onclick="goToProfile()">
+                <button class="logout-btn" id="logout-btn" onclick="handleLogout()">Logout</button>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<section class="profile-container">
+    <div class="profile-card">
+        <div class="profile-header">
+            <div class="profile-avatar-section">
+                <img src="" id="profile-avatar" class="profile-avatar" alt="Profile Avatar">
+                <div class="avatar-upload">
+                    <input type="file" id="avatar-upload" accept="image/*" onchange="handleAvatarUpload(event)">
+                    <label for="avatar-upload" class="upload-btn">Change Avatar</label>
+                </div>
+            </div>
+            <h2 id="profile-name">User Name</h2>
+            <p class="profile-email" id="profile-email">user@email.com</p>
+        </div>
+
+        <div class="profile-tabs">
+            <button class="tab-btn active" onclick="switchTab('edit')">Edit Profile</button>
+            <button class="tab-btn" onclick="switchTab('orders')">My Orders</button>
+            <button class="tab-btn" onclick="switchTab('reviews')">My Reviews</button>
+        </div>
+
+        <!-- Edit Profile Tab -->
+        <div id="edit-tab" class="tab-content active">
+            <form id="profile-form">
+                <div class="form-group">
+                    <label for="edit-name">Full Name</label>
+                    <input type="text" id="edit-name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="edit-email">Email Address</label>
+                    <input type="email" id="edit-email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="edit-phone">Phone Number</label>
+                    <input type="tel" id="edit-phone" name="phone">
+                </div>
+
+                <div class="form-group">
+                    <label for="edit-address">Home Address</label>
+                    <input type="text" id="edit-address" name="address" placeholder="Street, City, State">
+                </div>
+
+                <button type="submit" class="profile-save-btn" id="save-profile-btn">
+                    <span class="btn-text">Save Changes</span>
+                </button>
+            </form>
+        </div>
+
+        <!-- My Orders Tab -->
+        <div id="orders-tab" class="tab-content">
+            <div class="orders-list" id="orders-list">
+                <p class="empty-message">No orders yet</p>
+            </div>
+        </div>
+
+        <!-- My Reviews Tab -->
+        <div id="reviews-tab" class="tab-content">
+            <div class="reviews-form-wrapper">
+                <h3>Leave a Review</h3>
+                <form id="profile-review-form">
+                    <div class="form-group">
+                        <label>Product</label>
+                        <select id="profile-product-select" required>
+                            <option value="">Select a product to review</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Rating</label>
+                        <div class="rating-input">
+                            <span class="star-input" data-value="1">★</span>
+                            <span class="star-input" data-value="2">★</span>
+                            <span class="star-input" data-value="3">★</span>
+                            <span class="star-input" data-value="4">★</span>
+                            <span class="star-input" data-value="5">★</span>
+                        </div>
+                        <input type="hidden" id="profile-rating-input" value="0">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Your Review</label>
+                        <textarea id="profile-review-text" placeholder="Share your experience with this product..." required rows="4"></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Submit Review</button>
+                </form>
+            </div>
+
+            <div class="my-reviews-wrapper">
+                <h3>Your Reviews</h3>
+                <div class="my-reviews-list" id="my-reviews-list">
+                    <p class="empty-message">You haven't left any reviews yet</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-brand">
+            <h3>Superb Naturals</h3>
+            <p>Luxury Natural Hair products</p>
+        </div>
+
+        <div class="footer-seller">
+            <h4>Seller Information</h4>
+            <p><strong>Business Name:</strong> Superb Naturals</p>
+            <p><strong>Owner:</strong> Honeybell Mkpanam</p>
+            <p><strong>Contact:</strong> +234 802 086 6239</p>
+            <p><strong>Email:</strong> superbnaturalsbv@gmail.com</p>
+            <p><strong>Address:</strong> Plot 1, Block 1, Off Ebitu Ukiwe Street, Jabi, Abuja</p>
+            <p><strong>Location:</strong> Warri, Delta State, Nigeria.</p>
+        </div>
+        
+        <div class="footer-legal">
+            <p>&copy; 2026 Superb Naturals. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+    // Load products for review dropdown (from user's orders)
+    function loadProfileProductSelect() {
+        const select = document.getElementById('profile-product-select');
+        const userEmail = localStorage.getItem('userEmail');
+        
+        if (!userEmail) {
+            select.innerHTML = '<option value="">Please login first</option>';
+            return;
+        }
+        
+        // Get user's orders (user-specific)
+        const userOrdersKey = `userOrders_${userEmail}`;
+        const userOrders = JSON.parse(localStorage.getItem(userOrdersKey)) || [];
+        
+        // Extract product names from orders
+        let productSet = new Set();
+        userOrders.forEach(order => {
+            const items = order.items.split(", ");
+            items.forEach(item => productSet.add(item));
+        });
+        
+        if (productSet.size === 0) {
+            select.innerHTML = '<option value="">No orders yet. Please make a purchase first!</option>';
+            return;
+        }
+        
+        select.innerHTML = '<option value="">Select a product from your orders</option>' + 
+            Array.from(productSet).map(p => `<option value="${p}">${p}</option>`).join('');
+    }
+
+    // Handle star rating input for profile reviews
+    document.querySelectorAll('.rating-input .star-input').forEach(star => {
+        star.addEventListener('click', function() {
+            const rating = this.dataset.value;
+            document.getElementById('profile-rating-input').value = rating;
+            document.querySelectorAll('.rating-input .star-input').forEach(s => {
+                s.classList.remove('selected');
+            });
+            for (let i = 0; i < rating; i++) {
+                document.querySelectorAll('.rating-input .star-input')[i].classList.add('selected');
+            }
+        });
+    });
+
+    // Handle profile review form submission
+    const profileReviewForm = document.getElementById('profile-review-form');
+    if (profileReviewForm) {
+        profileReviewForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const userEmail = localStorage.getItem('userEmail');
+            if (!userEmail) {
+                alert('Please login to submit a review');
+                return;
+            }
+
+            const productName = document.getElementById('profile-product-select').value;
+            const rating = parseInt(document.getElementById('profile-rating-input').value);
+            const reviewText = document.getElementById('profile-review-text').value;
+
+            if (!productName) {
+                alert('Please select a product to review');
+                return;
+            }
+
+            if (rating === 0) {
+                alert('Please select a rating');
+                return;
+            }
+
+            // Find product ID from product name
+            const product = products.find(p => p.name === productName);
+            if (!product) {
+                alert('Product not found');
+                return;
+            }
+
+            // Use the global addProductReview function to save (so it appears on reviews page too)
+            addProductReview(product.id, userEmail, rating, reviewText);
+            
+            profileReviewForm.reset();
+            document.getElementById('profile-rating-input').value = 0;
+            document.querySelectorAll('.rating-input .star-input').forEach(s => s.classList.remove('selected'));
+            displayUserReviews();
+            alert('✅ Review submitted successfully! It will appear on the Reviews page.');
+        });
+    }
+
+    // Display user's reviews
+    function displayUserReviews() {
+        const userEmail = localStorage.getItem('userEmail');
+        const reviewsList = document.getElementById('my-reviews-list');
+        
+        if (!userEmail) {
+            reviewsList.innerHTML = '<p class="empty-message">Please login to view your reviews</p>';
+            return;
+        }
+
+        // Get all reviews from all products and filter by current user
+        let userReviews = [];
+        products.forEach(product => {
+            const productReviews = getProductReviews(product.id) || [];
+            productReviews.forEach(review => {
+                if (review.email === userEmail) {
+                    userReviews.push({
+                        productName: product.name,
+                        ...review
+                    });
+                }
+            });
+        });
+
+        if (userReviews.length === 0) {
+            reviewsList.innerHTML = '<p class="empty-message">You haven\'t left any reviews yet</p>';
+            return;
+        }
+
+        reviewsList.innerHTML = userReviews.map(review => `
+            <div class="review-item-profile">
+                <h4 class="product-name">${review.productName}</h4>
+                <div class="review-rating-profile">${'★'.repeat(review.rating)}${'☆'.repeat(5 - review.rating)}</div>
+                <p class="review-content">${review.text}</p>
+                <p class="review-date" style="color: #999; font-size: 12px;">Reviewed on ${new Date(review.date).toLocaleDateString()}</p>
+            </div>
+        `).join('');
+    }
+
+    // Initialize reviews section
+    loadProfileProductSelect();
+    displayUserReviews();
+</script>
+</body>
+</html>

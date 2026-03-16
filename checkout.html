@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Checkout - Superb Naturals</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <nav class="navbar">
+        <div class="nav-left">
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <img src="images/logo.jpg" class="logo-brand">
+            <a href="index.html" class="brand">Superb Naturals</a>
+        </div>
+
+        <div class="nav-menu" id="nav-menu">
+            <a href="index.html">Home</a>
+            <a href="reviews.html">Reviews</a>
+            <a href="contact.html">Support</a>
+            <a href="login.html" id="login-link">Login</a>
+            <a href="register.html" id="register-link">Register</a>
+            <a href="cart.html">Cart</a>
+        </div>
+
+        <div class="nav-right">
+            <a href="cart.html" class="cart-link">
+                🛒 <span id="cart-count">0</span>
+            </a>
+            <div class="avatar-container" id="avatar-container" style="display: none;">
+                <img src="" id="avatar-img" class="avatar-img" alt="Avatar" onclick="goToProfile()">
+                <button class="logout-btn" id="logout-btn" onclick="handleLogout()">Logout</button>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<section class="checkout-container">
+    <h2>Checkout</h2>
+    <div class="checkout-summary">
+        <h3>Order Summary</h3>
+        <div id="checkout-items"></div>
+        <h4 id="checkout-total">Total: ₦0</h4>
+    </div>
+
+    <form id="checkout-form">
+        <h3>Delivery Information</h3>
+        <div class="form-group">
+            <label for="customer-name">Full Name *</label>
+            <input type="text" id="customer-name" placeholder="Full Name" required>
+        </div>
+        <div class="form-group">
+            <label for="customer-email">Email Address *</label>
+            <input type="email" id="customer-email" placeholder="Email Address" required>
+        </div>
+        <div class="form-group">
+            <label for="customer-address">Shipping Address *</label>
+            <input type="text" id="customer-address" placeholder="Street, City, State" required>
+        </div>
+        <button type="submit" class="auth-btn">Complete Order</button>
+    </form>
+
+    <h3 id="order-message"></h3>
+</section>
+
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-brand">
+            <h3>Superb Naturals</h3>
+            <p>Luxury Natural Hair products</p>
+        </div>
+
+        <div class="footer-seller">
+            <h4>Seller Information</h4>
+            <p><strong>Business Name:</strong> Superb Naturals</p>
+            <p><strong>Owner:</strong> Honeybell Mkpanam</p>
+            <p><strong>Contact:</strong> +234 802 086 6239</p>
+            <p><strong>Email:</strong> superbnaturalsbv@gmail.com</p>
+            <p><strong>Address:</strong> Plot 1, Block 1, Off Ebitu Ukiwe Street, Jabi, Abuja</p>
+            <p><strong>Location:</strong> Warri, Delta State, Nigeria.</p>
+        </div>
+        
+        <div class="footer-legal">
+            <p>&copy; 2026 Superb Naturals. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+<script src="checkout.js"></script>
+</body>
+</html>

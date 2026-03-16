@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Seller Dashboard - Superb Naturals</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="display: none;" id="dashboard-body">
+
+<header>
+    <nav class="navbar">
+        <div class="nav-left">
+            <img src="images/logo.jpg" class="logo-brand">
+            <a href="index.html" class="brand">Superb Naturals</a>
+        </div>
+
+        <div class="nav-menu" id="nav-menu">
+            <a href="#orders" onclick="switchTab('orders')">Orders</a>
+            <a href="#payments" onclick="switchTab('payments')">Payments</a>
+            <a href="#deliveries" onclick="switchTab('deliveries')">Deliveries</a>
+        </div>
+
+        <div class="nav-right">
+            <button id="logout-btn" class="logout-btn">Logout</button>
+        </div>
+    </nav>
+</header>
+
+<section class="seller-dashboard">
+    <div class="dashboard-header">
+        <h1>Seller Dashboard</h1>
+        <p class="seller-name" id="seller-name">Welcome, Seller!</p>
+    </div>
+
+    <!-- Stats Overview -->
+    <div class="dashboard-stats">
+        <div class="stat-card">
+            <h3 id="total-orders">0</h3>
+            <p>Total Orders</p>
+        </div>
+        <div class="stat-card">
+            <h3 id="pending-orders">0</h3>
+            <p>Pending Orders</p>
+        </div>
+        <div class="stat-card">
+            <h3 id="total-revenue">₦0</h3>
+            <p>Total Revenue</p>
+        </div>
+        <div class="stat-card">
+            <h3 id="delivered-count">0</h3>
+            <p>Delivered</p>
+        </div>
+    </div>
+
+    <!-- Orders Tab -->
+    <div id="orders-tab" class="dashboard-tab active">
+        <h2>Orders Management</h2>
+        <table class="dashboard-table">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Customer Name</th>
+                    <th>Items</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="orders-list">
+                <tr>
+                    <td colspan="7" style="text-align: center; padding: 20px;">No orders yet</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Payments Tab -->
+    <div id="payments-tab" class="dashboard-tab">
+        <h2>Payment Tracking</h2>
+        <table class="dashboard-table">
+            <thead>
+                <tr>
+                    <th>Payment ID</th>
+                    <th>Order ID</th>
+                    <th>Customer</th>
+                    <th>Amount</th>
+                    <th>Payment Date</th>
+                    <th>Status</th>
+                    <th>Method</th>
+                </tr>
+            </thead>
+            <tbody id="payments-list">
+                <tr>
+                    <td colspan="7" style="text-align: center; padding: 20px;">No payments recorded</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Deliveries Tab -->
+    <div id="deliveries-tab" class="dashboard-tab">
+        <h2>Delivery Tracking</h2>
+        <table class="dashboard-table">
+            <thead>
+                <tr>
+                    <th>Delivery ID</th>
+                    <th>Order ID</th>
+                    <th>Customer</th>
+                    <th>Address</th>
+                    <th>Shipped Date</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="deliveries-list">
+                <tr>
+                    <td colspan="7" style="text-align: center; padding: 20px;">No deliveries yet</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<!-- Modal for updating order status -->
+<div id="status-modal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Update Order Status</h2>
+        <form id="status-form">
+            <input type="hidden" id="modal-order-id">
+            <div class="form-group">
+                <label for="order-status">Select Status:</label>
+                <select id="order-status" required>
+                    <option value="pending">Pending</option>
+                    <option value="processing">Processing</option>
+                    <option value="shipped">Shipped</option>
+                    <option value="delivered">Delivered</option>
+                    <option value="cancelled">Cancelled</option>
+                </select>
+            </div>
+            <button type="submit" class="auth-btn">Update Status</button>
+        </form>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-brand">
+            <h3>Superb Naturals</h3>
+            <p>Luxury Natural Hair products</p>
+        </div>
+
+        <div class="footer-seller">
+            <h4>Seller Information</h4>
+            <p><strong>Business Name:</strong> Superb Naturals</p>
+            <p><strong>Owner:</strong> Honeybell Mkpanam</p>
+            <p><strong>Contact:</strong> +234 802 086 6239</p>
+        </div>
+        
+        <div class="footer-legal">
+            <p>&copy; 2024 Superb Naturals. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

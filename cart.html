@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Cart - Superb Naturals</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <nav class="navbar">
+        <div class="nav-left">
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <img src="images/logo.jpg" class="logo-brand">
+            <a href="index.html" class="brand">Superb Naturals</a>
+        </div>
+
+        <div class="nav-menu" id="nav-menu">
+            <a href="index.html">Home</a>
+            <a href="reviews.html">Reviews</a>
+            <a href="contact.html">Support</a>
+            <a href="login.html" id="login-link">Login</a>
+            <a href="register.html" id="register-link">Register</a>
+            <a href="cart.html" class="active">Cart</a>
+        </div>
+
+        <div class="nav-right">
+            <a href="cart.html" class="cart-link">
+                🛒 <span id="cart-count">0</span>
+            </a>
+            <div class="avatar-container" id="avatar-container" style="display: none;">
+                <img src="" id="avatar-img" class="avatar-img" alt="Avatar" onclick="goToProfile()">
+                <button class="logout-btn" id="logout-btn" onclick="handleLogout()">Logout</button>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<section class="cart-container">
+    <h2>Your Cart</h2>
+    <div id="cart-items"></div>
+    <h3 id="cart-total"></h3>
+    <a href="checkout.html" class="checkout-btn">Proceed to Checkout</a>
+</section>
+
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-brand">
+            <h3>Superb Naturals</h3>
+            <p>Luxury Natural Hair products</p>
+        </div>
+
+        <div class="footer-seller">
+            <h4>Seller Information</h4>
+            <p><strong>Business Name:</strong> Superb Naturals</p>
+            <p><strong>Owner:</strong> Honeybell Mkpanam</p>
+            <p><strong>Contact:</strong> +234 802 086 6239</p>
+            <p><strong>Email:</strong> superbnaturalsbv@gmail.com</p>
+            <p><strong>Address:</strong> Plot 1, Block 1, Off Ebitu Ukiwe Street, Jabi, Abuja</p>
+            <p><strong>Location:</strong> Warri, Delta State, Nigeria.</p>
+        </div>
+        
+        <div class="footer-legal">
+            <p>&copy; 2026 Superb Naturals. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+<script src="cart.js"></script>
+</body>
+</html>

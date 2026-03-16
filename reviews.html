@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Reviews - Superb Naturals</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <nav class="navbar">
+        <div class="nav-left">
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <img src="images/logo.jpg" class="logo-brand">
+            <a href="index.html" class="brand">Superb Naturals</a>
+        </div>
+
+        <div class="nav-menu" id="nav-menu">
+            <a href="index.html">Home</a>
+            <a href="reviews.html" class="active">Reviews</a>
+            <a href="contact.html">Support</a>
+            <a href="login.html" id="login-link">Login</a>
+            <a href="register.html" id="register-link">Register</a>
+            <a href="cart.html">Cart</a>
+        </div>
+
+        <div class="nav-right">
+            <a href="cart.html" class="cart-link">
+                🛒 <span id="cart-count">0</span>
+            </a>
+            <div class="avatar-container" id="avatar-container" style="display: none;">
+                <img src="" id="avatar-img" class="avatar-img" alt="Avatar" onclick="goToProfile()">
+                <button class="logout-btn" id="logout-btn" onclick="handleLogout()">Logout</button>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<section class="page-hero">
+    <div class="hero-overlay">
+        <h2>Customer Reviews</h2>
+        <p class="hero-subtitle">Hear from our satisfied customers</p>
+    </div>
+</section>
+</section>
+
+<section class="reviews-container">
+        <div class="reviews-wrapper">
+            <div id="reviews-list" class="reviews-list"></div>
+        </div>
+
+        <!-- Add Review Form -->
+        <div id="review-form-section" class="review-form-section" style="display: none;">
+            <h2>Share Your Experience</h2>
+            <form id="review-form">
+                <div class="form-group">
+                    <label>Product</label>
+                    <select id="product-select" required>
+                        <option value="">Select a product</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Rating</label>
+                    <div class="rating-input">
+                        <span class="star-input" data-value="1">★</span>
+                        <span class="star-input" data-value="2">★</span>
+                        <span class="star-input" data-value="3">★</span>
+                        <span class="star-input" data-value="4">★</span>
+                        <span class="star-input" data-value="5">★</span>
+                    </div>
+                    <input type="hidden" id="rating-input" value="0">
+                </div>
+
+                <div class="form-group">
+                    <label>Your Review</label>
+                    <textarea id="review-text" placeholder="Share your thoughts..." required></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit Review</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Superb Naturals. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Load and display reviews
+        function displayReviews() {
+            const allReviews = [];
+            products.forEach(product => {
+                const reviews = getProductReviews(product.id) || [];
+                reviews.forEach(review => {
+                    allReviews.push({
+                        ...review,
+                        productName: product.name
+                    });
+                });
+            });
+
+            const reviewsList = document.getElementById('reviews-list');
+            if (allReviews.length === 0) {
+                reviewsList.innerHTML = '<p class="no-reviews">No reviews yet. Be the first to review!</p>';
+                return;
+            }
+
+            reviewsList.innerHTML = allReviews.map(review => `
+                <div class="review-card">
+                    <div class="review-header">
+                        <h3>${review.productName}</h3>
+                        <div class="review-rating">${'★'.repeat(review.rating)}${'☆'.repeat(5 - review.rating)}</div>
+                    </div>
+                    <p class="review-email">By ${review.email}</p>
+                    <p class="review-text">${review.text}</p>
+                </div>
+            `).join('');
+        }
+
+        // Load products for review form - only products from user's orders
+        function loadProductSelect() {
+            const select = document.getElementById('product-select');
+            const userEmail = localStorage.getItem('userEmail');
+            
+            if (!userEmail) {
+                select.innerHTML = '<option value="">Please login to leave a review</option>';
+                document.getElementById('review-form-section').innerHTML = '<p class="no-reviews"><strong>⚠️ Please login to leave a review for your purchased items.</strong></p>';
+                return;
+            }
+            
+            // Get user's orders
+            const userOrdersKey = `userOrders_${userEmail}`;
+            const userOrders = JSON.parse(localStorage.getItem(userOrdersKey)) || [];
+            
+            if (userOrders.length === 0) {
+                select.innerHTML = '<option value="">No orders yet</option>';
+                document.getElementById('review-form-section').innerHTML = '<p class="no-reviews"><strong>📦 You haven\'t placed any orders yet.</strong> Make a purchase first to leave a review!</p>';
+                return;
+            }
+            
+            // Extract products from orders
+            const orderedProductIds = new Set();
+            userOrders.forEach(order => {
+                // Parse product names/IDs from items string
+                const itemsStr = order.items || '';
+                products.forEach(product => {
+                    if (itemsStr.includes(product.name)) {
+                        orderedProductIds.add(product.id);
+                    }
+                });
+            });
+            
+            const orderedProducts = products.filter(p => orderedProductIds.has(p.id));
+            
+            if (orderedProducts.length === 0) {
+                select.innerHTML = '<option value="">No products to review</option>';
+                document.getElementById('review-form-section').innerHTML = '<p class="no-reviews"><strong>No products found in your orders.</strong></p>';
+                return;
+            }
+            
+            select.innerHTML = '<option value="">Select a product you purchased</option>' + 
+                orderedProducts.map(p => `<option value="${p.id}">${p.name}</option>`).join('');
+            
+            // Show review form section
+            document.getElementById('review-form-section').style.display = 'block';
+        }
+
+        // Handle star rating input
+        document.querySelectorAll('.star-input').forEach(star => {
+            star.addEventListener('click', function() {
+                const rating = this.dataset.value;
+                document.getElementById('rating-input').value = rating;
+                document.querySelectorAll('.star-input').forEach(s => {
+                    s.classList.remove('selected');
+                });
+                for (let i = 0; i < rating; i++) {
+                    document.querySelectorAll('.star-input')[i].classList.add('selected');
+                }
+            });
+        });
+
+        // Handle review form submission
+        const reviewForm = document.getElementById('review-form');
+        if (reviewForm) {
+            reviewForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const productId = parseInt(document.getElementById('product-select').value);
+                const rating = parseInt(document.getElementById('rating-input').value);
+                const reviewText = document.getElementById('review-text').value;
+                const userEmail = localStorage.getItem('userEmail');
+
+                if (!userEmail) {
+                    alert('Please login to submit a review');
+                    return;
+                }
+
+                if (!productId) {
+                    alert('Please select a product');
+                    return;
+                }
+
+                if (rating === 0) {
+                    alert('Please select a rating');
+                    return;
+                }
+
+                // Verify that user ordered this product
+                const userOrdersKey = `userOrders_${userEmail}`;
+                const userOrders = JSON.parse(localStorage.getItem(userOrdersKey)) || [];
+                const selectedProduct = products.find(p => p.id === productId);
+                
+                const hasOrderedProduct = userOrders.some(order => 
+                    order.items && order.items.includes(selectedProduct.name)
+                );
+                
+                if (!hasOrderedProduct) {
+                    alert('You can only review products you have purchased');
+                    return;
+                }
+
+                addProductReview(productId, userEmail, rating, reviewText);
+                reviewForm.reset();
+                document.getElementById('rating-input').value = 0;
+                document.querySelectorAll('.star-input').forEach(s => s.classList.remove('selected'));
+                displayReviews();
+                alert('Review submitted successfully!');
+            });
+        }
+
+        // Update UI based on login status
+        const userEmail = localStorage.getItem('userEmail');
+        const loginLink = document.getElementById('login-link');
+        const registerLink = document.getElementById('register-link');
+        const reviewFormSection = document.getElementById('review-form-section');
+
+        if (userEmail) {
+            loginLink.style.display = 'none';
+            registerLink.style.display = 'none';
+        } else {
+            loginLink.style.display = 'block';
+            registerLink.style.display = 'block';
+            reviewFormSection.style.display = 'none';
+        }
+
+        // Initialize on page load
+        loadProductSelect();
+        displayReviews();
+
+        // Check for logout
+        const logoutBtn = document.getElementById('logout-btn');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', function() {
+                localStorage.removeItem('currentUser');
+                location.reload();
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Superb Naturals</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <nav class="navbar">
+        <div class="nav-left">
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <img src="images/logo.jpg" class="logo-brand">
+            <a href="index.html" class="brand">Superb Naturals</a>
+        </div>
+
+        <div class="nav-menu" id="nav-menu">
+            <a href="index.html" class="active">Home</a>
+            <a href="reviews.html">Reviews</a>
+            <a href="contact.html">Support</a>
+            <a href="login.html" id="login-link">Login</a>
+            <a href="register.html" id="register-link">Register</a>
+            <a href="cart.html">Cart</a>
+        </div>
+
+        <div class="nav-right">
+            <a href="cart.html" class="cart-link">
+                🛒 <span id="cart-count">0</span>
+            </a>
+            <div class="avatar-container" id="avatar-container" style="display: none;">
+                <img src="" id="avatar-img" class="avatar-img" alt="Avatar" onclick="goToProfile()">
+                <button class="logout-btn" id="logout-btn" onclick="handleLogout()">Logout</button>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="hero-overlay">
+        <h2>Luxury Natural Hair Care</h2>
+        <p class="hero-subtitle">Crafted for Elegance. Powered by Nature.</p>
+        
+        <div class="hero-content">
+            <p class="hero-description">Discover the power of pure, organic ingredients. Our premium natural hair care products are formulated to nourish, strengthen, and transform your hair. Free from harsh chemicals, sulfates, and parabens—just pure nature, delivered.</p>
+            
+            <div class="hero-benefits">
+                <div class="benefit-item">
+                    <span class="benefit-icon">🌿</span>
+                    <h4>100% Organic</h4>
+                    <p>Pure natural ingredients</p>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">✨</span>
+                    <h4>Chemical-Free</h4>
+                    <p>No sulfates or parabens</p>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">💪</span>
+                    <h4>Strengthening</h4>
+                    <p>Deep nourishment & care</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Trust Badges Section -->
+<section class="trust-section">
+    <div class="trust-badges">
+        <div class="badge">
+            <div class="badge-icon">✓</div>
+            <p class="badge-text">Authentic & Verified</p>
+        </div>
+        <div class="badge">
+            <div class="badge-icon">🔒</div>
+            <p class="badge-text">Secure Checkout</p>
+        </div>
+        <div class="badge">
+            <div class="badge-icon">📦</div>
+            <p class="badge-text">Fast Delivery</p>
+        </div>
+        <div class="badge">
+            <div class="badge-icon">↩️</div>
+            <p class="badge-text">30-Day Returns</p>
+        </div>
+        <div class="badge">
+            <div class="badge-icon">⭐</div>
+            <p class="badge-text">Highly Rated</p>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Products Section -->
+<section class="featured-section">
+    <div class="featured-header">
+        <h2 class="luxury-title">Luxury Collection</h2>
+        <p class="featured-subtitle">Handpicked by our experts</p>
+    </div>
+    <div class="featured-products" id="featured-products"></div>
+</section>
+
+<section class="products" id="product-list"></section>
+
+<footer class="footer">
+    <div class="footer-container">
+
+        <div class="footer-brand">
+            <h3>Superb Naturals</h3>
+            <p>Luxury Natural Hair products</p>
+        </div>
+
+        <div class="footer-seller">
+            <h4>Seller Information</h4>
+            <p><strong>Bussiness Name:</strong>Superb Naturals</p>
+            <p><strong>Owner:</strong>Honeybell Mkpanam</p>
+            <p><strong>Contact:</strong>+234 802 086 6239</p>
+            <p><strong>Email:</strong>superbnaturalsbv@gmail.com</p>
+            <p><strong>Address:</strong>SNBV at Hampton, Okpanam Road, Asaba</p>
+            <P><strong>Location:</strong>Asaba, Delta State, Nigeria.</P>
+        </div>
+        <div class="footer-legal">
+            <p>&copy; 2024 Superb Naturals. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
