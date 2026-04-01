@@ -1013,6 +1013,7 @@ function checkUserAuthentication() {
     const userEmail = localStorage.getItem("userEmail");
     const loginLink = document.getElementById("login-link");
     const registerLink = document.getElementById("register-link");
+    const profileLink = document.getElementById("profile-link");
     const avatarContainer = document.getElementById("avatar-container");
     
     if (userEmail) {
@@ -1024,6 +1025,10 @@ function checkUserAuthentication() {
         if (registerLink) {
             registerLink.style.display = "none";
             registerLink.style.visibility = "hidden";
+        }
+        if (profileLink) {
+            profileLink.style.display = "block";
+            profileLink.style.visibility = "visible";
         }
         if (avatarContainer) {
             avatarContainer.style.display = "flex";
@@ -1055,6 +1060,10 @@ function checkUserAuthentication() {
         if (registerLink) {
             registerLink.style.display = "block";
             registerLink.style.visibility = "visible";
+        }
+        if (profileLink) {
+            profileLink.style.display = "none";
+            profileLink.style.visibility = "hidden";
         }
         if (avatarContainer) {
             avatarContainer.style.display = "none";
