@@ -234,14 +234,19 @@
             }
 
             // Find product ID from product name
-            const product = products.find(p => p.name === productName);
+            const product = products.find(p => p.name.toLowerCase().trim() === productName.toLowerCase().trim());
             if (!product) {
-                alert('Product not found');
-                return;
+                // Try partial match if exact match fails
+                const partialProduct = products.find(p => productName.toLowerCase().includes(p.name.toLowerCase()));
+                if (!partialProduct) {
+                    alert('Product not found. Please select from the dropdown list.');
+                    return;
+                }
+                // Use the partial match
+                addProductReview(partialProduct.id, userEmail, rating, reviewText);
+            } else {
+                addProductReview(product.id, userEmail, rating, reviewText);
             }
-
-            // Use the global addProductReview function to save (so it appears on reviews page too)
-            addProductReview(product.id, userEmail, rating, reviewText);
             
             profileReviewForm.reset();
             document.getElementById('profile-rating-input').value = 0;
